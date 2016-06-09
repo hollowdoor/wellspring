@@ -21,7 +21,7 @@ Create a *new object* that inherits from `object`.
 
 The *new object* will have `object` as its prototype.
 
-A style of differential inheritance.
+This is a style of differential inheritance.
 
 ws(object).extend(source) -> `object`
 -------------------------------------
@@ -119,7 +119,14 @@ See the **EXAMPLES.md** file in the wellspring git repository for more.
 Why?
 ----
 
-Differential inheritance is good for speedy programming, and plugin systems.
+Differential inheritance is good for speedy programming, inheritance, and plugin systems.
+
+There is also `stampit` which is a nice library you might want to try. `stampit` is the original differential inheritance library.
+
+When?
+-----
+
+In the opinion of the creator of this library differential inheritance can be used anywhere, but is best used for plugin systems.
 
 Reading
 =======
