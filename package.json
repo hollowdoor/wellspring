@@ -1,8 +1,16 @@
 {
   "name": "wellspring",
   "version": "1.0.0",
-  "description": "A kind of plugin system.",
+  "description": "Prototype library for pluggable systems.",
   "main": "index.js",
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/hollowdoor/wellspring/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hollowdoor/wellspring.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +19,6 @@
     "plugins"
   ],
   "author": "Quentin Engles <hollowdoor99@gmail.com>",
-  "license": "ISC"
+  "license": "WTFPL",
+  "devDependencies": {}
 }
