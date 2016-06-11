@@ -76,6 +76,11 @@ Check if the property name exists on the object.
 
 `onThePrototype` is an optional boolean argument to allow checking on the prototype chain.
 
+ws(object).clean() -> undefined
+-------------------------------
+
+Calling `clean` deletes all the properties of an object.
+
 Example:
 
 ```javascript

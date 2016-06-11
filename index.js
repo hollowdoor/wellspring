@@ -20,12 +20,29 @@ var start = Object.create({}, {
         },
         configurable: true
     },
-    define: function(name, descriptor){
-        defineProperty(this.context, name, descriptor);
+    define: {
+        value: function(name, descriptor){
+            defineProperty(this.context, name, descriptor);
+        }
     },
-    has: function(name, onPrototype){
-        if(onPrototype) return name in this.context;
-        return hasOwnProperty(this.context, name);
+    has: {
+        value: function(name, onPrototype){
+            if(onPrototype) return name in this.context;
+            return hasOwnProperty(this.context, name);
+        }
+    },
+    clean: {
+        value: function(){
+            keys(this.context).filter(function(key){
+                return this.has(key);
+            }, this)
+            .map(function(key){
+                //Try to delete first.
+                //delete removes the property
+                try{delete this.context[key];}catch(e){}
+                return key;
+            }, this);
+        }
     },
     context: {
         get: function(){
