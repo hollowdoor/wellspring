@@ -75,13 +75,39 @@ var start = Object.create({}, {
                         defineProperty(prev, name, {
                             value: source[name],
                             configurable: true,
-                            enumberable: true
+                            enumerable: true
                         });
                     }
 
                     return prev;
                 }, prev);
             }, this.context);
+        }
+    },
+    affix: {
+        value: function(){
+
+            var enumerable = true, objects;
+
+            if(typeof arguments[arguments.length - 1] === 'boolean'){
+                enumerable = arguments[arguments.length - 1];
+                objects = slice(arguments, 0, -1);
+            }else{
+                objects = slice(arguments);
+            }
+
+            objects.forEach(function(source){
+                return keys(source).forEach(function(key){
+                    if(hasOwnProperty(source, key)){
+                        this.define(key, {
+                            value: source[key],
+                            enumerable: enumerable
+                        });
+                    }
+                }, this);
+            }, this);
+
+            return this.context;
         }
     },
     compose: {

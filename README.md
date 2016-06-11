@@ -81,6 +81,15 @@ ws(object).clean() -> undefined
 
 Calling `clean` deletes all the properties of an object.
 
+ws(object).affix(source, ...|enumerable) -> object
+--------------------------------------------------
+
+Extend `object` with enumerable, and emutable properties from `source`.
+
+Add as many sources as you want.
+
+You can allow the properties to be enumerable by passing true to the `enumerable` argument. The enumerable argument is just the last argument even if you pass multiple sources.
+
 Example:
 
 ```javascript
