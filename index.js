@@ -112,7 +112,8 @@ var start = Object.create({}, {
     },
     bind: {
         value: function(source, descriptor){
-            var d = {
+            var descript,
+            d = {
                 writable: true,
                 configurable: true,
                 enumerable: true
@@ -122,19 +123,18 @@ var start = Object.create({}, {
                 d = WellSpring(d).extend(descriptor);
             }
 
-            keys(source).filter(function(key){
-                return typeof source[key] === 'function';
-            })
-            .forEach(function(key){
-                var descript = WellSpring(d).compose({
-                    value: source[key].bind(source)
-                });
-                try{                    
-                    this.define(key, descript);
-                }catch(e){
-                    throw e;
+            for(var name in source){
+                if(typeof source[name] === 'function' && hasOwnProperty(source, name)){
+                    descript = WellSpring(d).compose({
+                        value: source[name].bind(source)
+                    });
+                    try{
+                        this.define(name, descript);
+                    }catch(e){
+                        throw e;
+                    }
                 }
-            }, this);
+            }
         }
     },
     compose: {
