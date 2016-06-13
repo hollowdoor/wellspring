@@ -90,6 +90,15 @@ Add as many sources as you want.
 
 You can allow the properties to be enumerable by passing true to the `enumerable` argument. The enumerable argument is just the last argument even if you pass multiple sources.
 
+ws(object).bind(source, descriptor) -> undefined
+------------------------------------------------
+
+`bind` gives all the methods of `source` to `object`. `source` should at least have some enumerable properties that have functions as values.
+
+Those methods have there `this` variable set to `source`.
+
+`descriptor` is an optional argument that should be a property data descriptor. This property descriptor is cloned, and applied to all methods set to `object`. The descriptor's `value` is set to those method functions from `source`.
+
 Example:
 
 ```javascript

@@ -110,6 +110,33 @@ var start = Object.create({}, {
             return this.context;
         }
     },
+    bind: {
+        value: function(source, descriptor){
+            var d = {
+                writable: true,
+                configurable: true,
+                enumerable: true
+            };
+
+            if(typeof descriptor === 'object'){
+                d = WellSpring(d).extend(descriptor);
+            }
+
+            keys(source).filter(function(key){
+                return typeof source[key] === 'function';
+            })
+            .forEach(function(key){
+                var descript = WellSpring(d).compose({
+                    value: source[key].bind(source)
+                });
+                try{                    
+                    this.define(key, descript);
+                }catch(e){
+                    throw e;
+                }
+            }, this);
+        }
+    },
     compose: {
         value: function(){
             var dest = WellSpring(this.inherit());
